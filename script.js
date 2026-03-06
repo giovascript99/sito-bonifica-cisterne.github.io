@@ -71,3 +71,61 @@ window.addEventListener('scroll', function () {
         }
     }
 });
+
+// EmailJS
+const btn = document.getElementById('button');
+const contactForm = document.getElementById('form');
+
+// Funzione per generare la data in italiano
+const getFormattedDate = () => {
+    return new Date().toLocaleString('it-IT', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+};
+
+contactForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    // Feedback visivo sul bottone
+    const originalText = btn.innerText;
+    btn.innerText = 'Invio in corso...';
+    btn.disabled = true; // Disabilita il click durante l'invio
+
+    const serviceID = 'service_xboo7gh';
+    const templateID = 'template_k0l1cs9';
+
+    // Raccogliamo i dati manualmente per poter aggiungere la variabile "time"
+    const templateParams = {
+        name: this.name.value,
+        phone: this.phone.value,
+        email: this.email.value,
+        service_type: this.service_type.value,
+        message: this.message.value,
+        time: getFormattedDate() // La variabile magica per il tuo template
+    };
+
+    emailjs.send(serviceID, templateID, templateParams)
+        .then(() => {
+            btn.innerText = 'Inviato con successo!';
+            btn.classList.replace('btn-primary-custom', 'btn-success'); // Cambio colore opzionale
+
+            this.reset(); // Pulisce il form
+
+            // Dopo 3 secondi il bottone torna normale
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.disabled = false;
+                btn.classList.replace('btn-success', 'btn-primary-custom');
+            }, 3000);
+
+        }, (err) => {
+            btn.innerText = 'Errore nell\'invio';
+            btn.disabled = false;
+            alert("Errore: " + JSON.stringify(err));
+        });
+});
