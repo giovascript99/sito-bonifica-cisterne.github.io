@@ -647,8 +647,8 @@ section {
 }
 
 @media (max-width: 768px) {
-    .box-servizi{
-    height: 360px;
+    .box-servizi {
+        height: 360px;
     }
 
     .service-card {
@@ -928,13 +928,12 @@ section {
     /* Inizia un po' più in alto */
     left: 0;
     width: 100%;
-    height: 120%;
+    height: 150%;
     background-image: url('img/cta-bg.webp');
     background-size: cover;
     background-position: center center;
     z-index: 0;
     will-change: transform;
-    /* Ottimizza le prestazioni della GPU */
 }
 
 .dark-overlay {
@@ -1122,8 +1121,8 @@ section {
 /* Sticky WhatsaApp */
 .whatsapp-sticky {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 20px;
+    right: 20px;
     width: 60px;
     height: 60px;
     background-color: #25d366;

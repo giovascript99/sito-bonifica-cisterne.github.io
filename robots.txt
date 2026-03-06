@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://giovascript99.github.io/sito-bonifica-cisterne/sitemap.xml
